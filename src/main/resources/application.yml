@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Springboot-redis
+  profiles:
+    active: cluster  #one代表的激活的单机版的redis，cluster代表的是激活集群版的redis
+
+
+
+

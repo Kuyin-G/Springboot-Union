@@ -1,0 +1,5 @@
+#这是单机版的Redis
+spring:
+  redis:
+    host: 192.168.25.134
+    port: 6379
