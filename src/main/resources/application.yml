@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: Springboot-Mybatis
+  datasource: # 配置 druid 数据连接池
+    name: mydb
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/ssm_crud?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 8979
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mybatis/mapper/*Mapper.xml  # 配置mybatis的mapper文件位置
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: false
+    # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
+    call-setters-on-nulls: true
+
+# 设置日志级别
+logging:
+  level:
+    org.example.mapper: debug
+    org.example.test: debug
+
