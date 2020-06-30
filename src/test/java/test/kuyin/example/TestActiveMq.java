@@ -2,7 +2,7 @@ package test.kuyin.example;
 
 
 import example.kuyin.ActiveMqMain;
-import example.kuyin.Confige.QueueProducer;
+import example.kuyin.Confige.QueueConsumer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class TestActiveMq {
 
     @Autowired
-    private QueueProducer queueProducer;
+    private QueueConsumer queueConsumer;
 
-
-    @Test
-    public void testSend(){
-        queueProducer.produceMessage("hello");
-    }
 
 
 }
