@@ -1,16 +1,17 @@
 package spring.learn.config;
 
 
-import org.springframework.beans.factory.annotation.Configurable;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.UsesSunMisc;
 import spring.learn.entity.Functions;
 import spring.learn.service.UseService;
 
 /**
  * 使用 @Configuration 声明该类是配置类，可以使用@Bean添加相应的javabean组件
  * */
+@ComponentScan({"spring.learn"})
 @Configuration
 public class JavaConfig {
 

@@ -1,17 +1,17 @@
 package spring.learn;
 
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import spring.learn.config.JavaConfig;
-import spring.learn.service.UseService;
+import spring.learn.entity.Author;
 
-@ComponentScan
+@SpringBootApplication
 public class SpringMain {
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
-        UseService useService = context.getBean(UseService.class);
-        System.out.println("useService:"+useService);
-        useService.useFunctions("word");
+        SpringApplication.run(SpringMain.class,args);
     }
+
+
 }
