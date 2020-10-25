@@ -2,6 +2,8 @@ package spring.test.demo;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import spring.learn.aop.AopTarget;
+import spring.learn.aop.AopTargetAround;
 import spring.learn.async.AsyncTaskService;
 import spring.learn.config.*;
 import spring.learn.entity.Author;
@@ -14,6 +16,43 @@ import spring.learn.service.UseService;
 import java.io.IOException;
 
 public class SpringTestDmo {
+    /**
+     * spring的Aop
+     * 在配置文件中需要使用 @EnableAspectJAutoProxy 开启对Aop的支持
+     * 在通知类中需要使用@Aspect 来标志是一个切面类，通知需要将该切面注册到Spring中（使用@Component）
+     *      在切面类中：可以使用一个空的方法提来标志一个切点：
+     *           @Pointcut("execution(* spring.learn.aop.AopTarget.*(..))")
+     *              1. *  代表的是任意的返回值
+     *              2. spring.learn.aop.AopTarget.* 代表的是该类中的任意的犯法
+     *              3. .. :代表的是任意参数的方法
+     *      切面方法类型：
+     *          1.前置通知：@Before
+     *              可使用 JoinPoint类型 作为参数，访问链接相关细节，如果方法名和方法参数等
+     *          2.后置通知：@After （再方法执行后，无论是否发生异常，都会执行）
+     *              可使用 JoinPoint类型 作为参数，访问链接相关细节，如果方法名和方法参数等，但是无法访问目标方法的的返回值（执行结果）
+     *          3.返回通知：@AfterReturning
+     *              可使用 JoinPoint类型 作为参数，访问链接相关细节，同时可以使用Object result 来访问方法的返回值（执行结果）
+     *          4.异常通知：@AfterThrowing
+     *              可以访问目标方法的异常结果，对结果进行处理，可以使用 指定的异常作为参数，例如：NullPointerException ne 等
+     *          5.环绕通知：@Around
+     *              需要使用ProcessingJoinPoint 类型作为参数
+     * */
+    @Test
+    public void testSpringAop(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AopConfig.class);
+        AopTarget aopTarget = context.getBean(AopTarget.class);
+        AopTargetAround targetAround = context.getBean(AopTargetAround.class);
+        // 测试前置、后置返回通知、异常通知、后置通知
+        aopTarget.add(1,2);
+        // 这里会抛出一个异常
+//        aopTarget.div(1,0);
+        // 测试环绕通知
+        targetAround.addAround(2,4);
+        context.close();
+    }
+    /**
+     * spring 的计划任务：
+     * */
 
     @Test
     public void testSchedule() throws IOException {
