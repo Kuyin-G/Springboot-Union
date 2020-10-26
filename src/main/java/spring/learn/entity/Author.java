@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Setter
 // 指定properties文件，springboot会自动加载application.properties
 // 但是spring不会自动是加载该文件，需要使用PropertySource注解到文件
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:spring_test.properties")
 // 使用注解导入properties中的值
 @Component
 @ConfigurationProperties(prefix = "author")
