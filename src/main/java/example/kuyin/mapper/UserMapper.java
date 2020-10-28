@@ -14,4 +14,16 @@ public interface UserMapper {
     public User getUserById(@Param("id") Integer id);
 
     public List<User> getUsersLikeName(String  userName);
+
+    public void save(User user);
+
+    public void update(User user);
+
+    public User getById(Integer id);
+
+    public User getByUser(User user);
+
+    public void updateBySelected(User user);
+
+
 }

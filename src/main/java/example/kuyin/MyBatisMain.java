@@ -8,6 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MyBatisMain {
     public static void main(String[] args) {
-        SpringApplication.run(MyBatisMain.class);
+        SpringApplication.run(MyBatisMain.class,args);
     }
 }

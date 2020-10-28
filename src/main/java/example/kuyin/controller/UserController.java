@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -29,6 +30,17 @@ public class UserController {
 
     }
 
+    @RequestMapping("/user/getByUser")
+    public ResultJson getUserByUser(User user){
+        user = userService.getByUser(user);
+        if(user==null){
+            return  ResultJson.failure("查无此人");
+        }else{
+            return ResultJson.success(user);
+        }
+
+    }
+
     @RequestMapping("user/like")
     public ResultJson<List<User>> getUserslikeName(@RequestParam("name") String name){
         if (name!= null){
@@ -44,5 +56,25 @@ public class UserController {
             }
         }
         return ResultJson.failure();
+    }
+
+
+    @RequestMapping("user/insert")
+    public ResultJson<User> insert(User user){
+        user.setCreatetime(new Date(System.currentTimeMillis()));
+        userService.save(user);
+        return ResultJson.success(user);
+    }
+
+    @RequestMapping("user/update")
+    public ResultJson<User> update(User user){
+        userService.update(user);
+        return ResultJson.success(user);
+    }
+    @RequestMapping("user/updateBySelect")
+    public ResultJson<User> updateBySelected(User user){
+        userService.updateBySelected(user);
+        user = userService.getUserById(user.getId());
+        return ResultJson.success(user);
     }
 }

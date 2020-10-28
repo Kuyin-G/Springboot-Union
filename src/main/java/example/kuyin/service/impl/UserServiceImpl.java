@@ -23,4 +23,42 @@ public class UserServiceImpl implements UserService {
     public List<User> getUserLikeName(User user) {
         return userMapper.getUsersLikeName(user.getUserName());
     }
+
+    @Override
+    public void save(User user) {
+        userMapper.save(user);
+    }
+
+    @Override
+    public void update(User user) {
+        if(user.getId()!=null){
+            userMapper.update(user);
+        }
+    }
+
+    @Override
+    public User getById(Integer id) {
+        User user = null;
+        if(id>0){
+            user = userMapper.getById(id);
+        }
+        return user;
+    }
+
+    @Override
+    public void updateBySelected(User user) {
+        if(user.getId() !=null && user.getId() > 0){
+            userMapper.updateBySelected(user);
+        }
+    }
+
+    @Override
+    public User getByUser(User user) {
+        if(user !=null){
+            user = userMapper.getByUser(user);
+        }else{
+            user = null;
+        }
+        return user;
+    }
 }

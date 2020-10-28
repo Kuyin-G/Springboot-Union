@@ -4,9 +4,9 @@ spring:
   datasource: # 配置 druid 数据连接池
     name: mydb
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/ssm_crud?characterEncoding=utf-8&serverTimezone=UTC
+    url: jdbc:mysql://192.168.25.134:3306/ssm_crud?characterEncoding=utf-8&serverTimezone=UTC
     username: root
-    password: 11111
+    password: 8979
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:

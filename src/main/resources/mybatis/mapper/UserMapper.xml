@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="example.kuyin.mapper.UserMapper" >
-
+  
+<!--  查-->
   <select id="getUsersLikeName" resultType="example.kuyin.bean.User">
     select * from tbl_user where userName like #{userName}
   </select>
-  
+  <select id="getById" resultType="example.kuyin.bean.User">
+    select * from tbl_user where id = #{id}
+  </select>
+  <select id="getByUser" parameterType="example.kuyin.bean.User" resultType="example.kuyin.bean.User">
+    select * from tbl_user
+    <trim prefix="where" prefixOverrides="and">
+      <if test="id!=null and id !=''">
+        id = #{id}
+      </if>
+      <if test="userName!=null and userName !=''">
+        and userName = #{userName}
+      </if>
+      <if test="loginAccount !=null and loginAccount != ''">
+        and loginAccount = #{loginAccount}
+      </if>
+      <if test="password !=null and password!=''">
+        and password = #{password}
+      </if>
+      <if test="email!=null and email != ''">
+        and email = #{email}
+      </if>
+      <if test="createtime!=null and createtime != ''">
+        and createtime = #{createtime}
+      </if>
+    </trim>
+  </select>
+<!--  增-->
+  <insert id="save" parameterType="example.kuyin.bean.User" useGeneratedKeys="true" keyProperty="id">
+    insert into tbl_user (userName,loginAccount,password,email,createtime) values
+        (#{userName},#{loginAccount},#{password},#{email},#{createtime})
+  </insert>
+
+  <update id="update" parameterType="example.kuyin.bean.User">
+    update tbl_user set
+    <if test="userName!=null and userName != ''">
+      userName = #{userName},
+    </if>
+    <if test="loginAccount!=null and loginAccount != ''">
+      loginAccount = #{loginAccount},
+    </if>
+    <if test="password!=null and password != ''">
+      password = #{password},
+    </if>
+    <if test="email!=null and email != ''">
+      email = #{email}
+    </if>
+    where id= #{id}
+  </update>
+
+  <update id = "updateBySelected" parameterType="example.kuyin.bean.User">
+    update tbl_user
+    <set>
+      <if test="userName!=null and userName !=''">
+        userName = #{userName},
+      </if>
+      <if test="loginAccount !=null and loginAccount != ''">
+        loginAccount = #{loginAccount},
+      </if>
+      <if test="password !=null and password!=''">
+        password = #{password},
+      </if>
+      <if test="email!=null and email != ''">
+        email = #{email},
+      </if>
+      <if test="createtime!=null and createtime != ''">
+        createtime = #{createtime}
+      </if>
+    </set>
+    where id = #{id}
+  </update>
 </mapper>

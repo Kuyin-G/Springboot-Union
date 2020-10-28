@@ -48,4 +48,10 @@ public class ResultJson<T>{
         resultJson.setResult(FAILURE);
         return resultJson;
     }
+
+    public static <T> ResultJson<T> failure(T t){
+        ResultJson<T> resultJson = new ResultJson<>();
+        resultJson.setResult(FAILURE);
+        return resultJson;
+    }
 }
