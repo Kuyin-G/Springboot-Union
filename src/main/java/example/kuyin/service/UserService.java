@@ -1,5 +1,6 @@
 package example.kuyin.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import example.kuyin.bean.User;
 
 import java.util.List;
@@ -11,6 +12,8 @@ public interface UserService {
 
     public User getUserById(Integer id );
 
+    void update(User user);
 
+    void deleteById(Integer id);
 
 }

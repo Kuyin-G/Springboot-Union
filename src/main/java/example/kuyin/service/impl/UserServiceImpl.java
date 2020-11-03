@@ -25,4 +25,17 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectById(id);
     }
 
+    @Override
+    public void update(User user) {
+        if(user.getId() !=null){
+            userMapper.updateById(user);
+        }
+
+    }
+
+    @Override
+    public void deleteById(Integer userId) {
+        userMapper.deleteById(userId);
+    }
+
 }

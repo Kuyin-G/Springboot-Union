@@ -17,20 +17,27 @@ import java.sql.Date;
 @AllArgsConstructor
 @ToString
 @TableName(value = "tbl_user")
+/*
+*
+ */
 public class User {
     // 定义id
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     // 定义用户名称
+    @TableField("user_name")
     private String userName;
     // 定义用户账号
+    @TableField("login_account")
     private String loginAccount;
     // 定义用户密码
+    @TableField("password")
     private String password;
     // 定义用户邮件
+    @TableField("email")
     private String email;
     // 定义创建用户的日期
-    @TableField(value = "createtime")
+    @TableField(value = "create_time")
     private Date createTime;
 
 }
