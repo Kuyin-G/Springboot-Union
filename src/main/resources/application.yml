@@ -1,3 +1,4 @@
+#配置数据源
 spring:
   application:
     name: Springboot-Mybatis
@@ -9,14 +10,13 @@ spring:
     password: 8979
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-
+#配置Mybatis中Mapper.xml文件的位置
 mybatis-plus:
   mapper-locations: classpath*:/mybatis/mapper/*Mapper.xml
   configuration:
-
     map-underscore-to-camel-case: false
     call-setters-on-nulls: true
-
+# 日志级别
 logging:
   level:
     org.example.mapper: debug
